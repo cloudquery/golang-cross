@@ -1,4 +1,9 @@
-# golang-cross [![Actions Status](https://github.com/gythialy/golang-cross/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/gythialy/golang-cross/actions)
+
+Fork from [gythialy/golang-cross](https://github.com/gythialy/golang-cross) that we maintain to compile
+CloudQuery and CloudQuery providers plugin. This is needed if you want your plugin to support sqlite which requires CGO, otherwise you can
+use standard Go cross compile via `GOOS` and `GOARCH`.
+
+# golang-cross [![Actions Status](https://github.com/cloudquery/golang-cross/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/cloudquery/golang-cross/actions)
 
 Docker container to do cross compilation (Linux, windows, macOS, ARM, ARM64) of go packages including support for cgo.
 
