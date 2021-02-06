@@ -1,5 +1,5 @@
 # golang parameters
-ARG GO_VERSION=1.15.1
+ARG GO_VERSION=1.15.8
 
 FROM golang:${GO_VERSION}-buster AS osx-cross-base
 
@@ -78,17 +78,9 @@ FROM final
 
 COPY entrypoint.sh /
 
-ARG GOLANG_VERSION=1.15.7
-ARG GOLANG_DIST_SHA=0d142143794721bb63ce6c8a6180c4062bcf8ef4715e7d6d6609f3a8282629b3
-
-# update golang
-RUN \
-	GOLANG_DIST=https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz && \
-	wget -O go.tgz "$GOLANG_DIST"; \
-	echo "${GOLANG_DIST_SHA} *go.tgz" | sha256sum -c -; \
-	rm -rf /usr/local/go; \
-	tar -C /usr/local -xzf go.tgz; \
-	rm go.tgz;
+# Copy generic compiler wrappers
+COPY gencc.sh /usr/bin/gencc.sh
+COPY gencpp.sh /usr/bin/gencpp.sh
 
 # install goreleaser
 ARG GORELEASER_VERSION=0.155.0
