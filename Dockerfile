@@ -1,6 +1,8 @@
 # golang parameters
 ARG GO_VERSION=1.15.1
 
+FROM golang:${GO_VERSION}-buster AS osx-cross-base
+
 # OS-X SDK parameters
 ARG OSX_SDK=MacOSX10.15.sdk
 ARG OSX_SDK_SUM=4051d210bf232ccb5eee863d6a4052afa800001810a2a42e354c9637ec78cd2c
@@ -11,7 +13,6 @@ ARG OSX_CROSS_COMMIT=2733413b6847c1489d6230f062d3293e6f42a021
 
 ENV OSX_CROSS_PATH=/osxcross
 
-FROM golang:${GO_VERSION}-buster AS osx-cross-base
 ARG DEBIAN_FRONTEND=noninteractive
 # Install deps
 RUN set -x; echo "Starting image build for Debian Stretch" \
